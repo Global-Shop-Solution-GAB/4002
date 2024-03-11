@@ -1,0 +1,955 @@
+Program.Sub.ScreenSU.Start
+gui.Form1..create
+gui.Form1..caption("Sales Order BOM View")
+gui.Form1..size(9600,9660)
+gui.Form1..minx(0)
+gui.Form1..miny(0)
+gui.Form1..position(0,0)
+gui.Form1..event(unload,form1_unload)
+gui.Form1..alwaysontop(False)
+gui.Form1..fontname("Arial")
+gui.Form1..fontsize(8)
+gui.Form1..forecolor(0)
+gui.Form1..fontstyle(,,,,)
+gui.Form1..BackColor(-2147483633)
+gui.Form1..controlbox(True)
+gui.Form1..maxbutton(True)
+gui.Form1..minbutton(True)
+gui.Form1..mousepointer(0)
+gui.Form1..moveable(True)
+gui.Form1..sizeable(True)
+gui.Form1..ShowInTaskBar(True)
+gui.Form1..titlebar(True)
+gui.Form1.lblOrderNo.create(label,"Sales Order",True,1110,255,1,200,200,True,0,Arial,8,-2147483633,0)
+gui.Form1.lblOrderNo.defaultvalue("")
+gui.Form1.lblOrderNo.controlgroup(0)
+gui.Form1.txtOrderNo.create(textbox,"",True,1350,300,0,200,445,True,0,Arial,8,-2147483643,1)
+gui.Form1.txtOrderNo.event(keypressenter,txtorderno_keypressenter)
+gui.Form1.txtOrderNo.event(lostfocus,txtorderno_lostfocus)
+gui.Form1.txtOrderNo.defaultvalue("")
+gui.Form1.txtOrderNo.controlgroup(0)
+gui.Form1.cmdOrder.create(button)
+gui.Form1.cmdOrder.caption("^")
+gui.Form1.cmdOrder.visible(True)
+gui.Form1.cmdOrder.size(465,375)
+gui.Form1.cmdOrder.zorder(0)
+gui.Form1.cmdOrder.position(1645,415)
+gui.Form1.cmdOrder.enabled(True)
+gui.Form1.cmdOrder.fontname("Arial")
+gui.Form1.cmdOrder.fontsize(8)
+gui.Form1.cmdOrder.event(click,cmdorder_click)
+gui.Form1.cmdOrder.defaultvalue("")
+gui.Form1.cmdOrder.controlgroup(0)
+gui.Form1.cmdOK.create(button)
+gui.Form1.cmdOK.caption("OK")
+gui.Form1.cmdOK.visible(True)
+gui.Form1.cmdOK.size(855,375)
+gui.Form1.cmdOK.zorder(0)
+gui.Form1.cmdOK.position(200,8665)
+gui.Form1.cmdOK.enabled(True)
+gui.Form1.cmdOK.fontname("Arial")
+gui.Form1.cmdOK.fontsize(8)
+gui.Form1.cmdOK.event(click,cmdok_click)
+gui.Form1.cmdOK.defaultvalue("")
+gui.Form1.cmdOK.controlgroup(0)
+gui.Form1.gsfgOESelect.create(gsflexgrid)
+gui.Form1.gsfgOESelect.FixedRows(0)
+gui.Form1.gsfgOESelect.FixedCols(0)
+gui.Form1.gsfgOESelect.visible(True)
+gui.Form1.gsfgOESelect.size(9030,7425)
+gui.Form1.gsfgOESelect.zorder(0)
+gui.Form1.gsfgOESelect.position(100,1000)
+gui.Form1.gsfgOESelect.enabled(True)
+gui.Form1.lblWait.create(label,"",True,7770,255,1,1400,8750,False,0,Arial,8,-2147483633,0)
+gui.Form1.lblWait.defaultvalue("")
+gui.Form1.lblWait.controlgroup(0)
+
+
+gui.Form2..create
+gui.Form2..caption("Sales Order BOM Explosion View")
+gui.Form2..size(28635,12210)
+gui.Form2..minx(0)
+gui.Form2..miny(0)
+gui.Form2..position(0,0)
+gui.Form2..event(unload,form2_unload)
+gui.Form2..alwaysontop(False)
+gui.Form2..fontname("Arial")
+gui.Form2..fontsize(8)
+gui.Form2..forecolor(0)
+gui.Form2..fontstyle(,,,,)
+gui.Form2..BackColor(-2147483633)
+gui.Form2..controlbox(True)
+gui.Form2..maxbutton(True)
+gui.Form2..minbutton(True)
+gui.Form2..mousepointer(0)
+gui.Form2..moveable(True)
+gui.Form2..sizeable(True)
+gui.Form2..ShowInTaskBar(True)
+gui.Form2..titlebar(True)
+gui.Form2.lblOrder.create(label,"Sales Order",True,1125,255,1,200,200,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblOrder.defaultvalue("")
+gui.Form2.lblOrder.controlgroup(0)
+gui.Form2.txtOrder.create(textbox,"",True,1170,300,0,200,400,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtOrder.defaultvalue("")
+gui.Form2.txtOrder.controlgroup(0)
+gui.Form2.lblCustID.create(label,"Customer ID",True,915,255,1,1610,200,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblCustID.defaultvalue("")
+gui.Form2.lblCustID.controlgroup(0)
+gui.Form2.txtCustID.create(textbox,"",True,975,300,0,1610,400,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtCustID.defaultvalue("")
+gui.Form2.txtCustID.controlgroup(0)
+gui.Form2.lblCustName.create(label,"Customer Name",True,1935,255,1,2760,200,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblCustName.defaultvalue("")
+gui.Form2.lblCustName.controlgroup(0)
+gui.Form2.txtCustName.create(textbox,"",True,3435,300,0,2760,400,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtCustName.defaultvalue("")
+gui.Form2.txtCustName.controlgroup(0)
+gui.Form2.lblShipID.create(label,"Ship To ID",True,1185,255,1,200,865,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblShipID.defaultvalue("")
+gui.Form2.lblShipID.controlgroup(0)
+gui.Form2.txtShipID.create(textbox,"",True,1170,300,0,200,1095,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtShipID.defaultvalue("")
+gui.Form2.txtShipID.controlgroup(0)
+gui.Form2.lblShipName.create(label,"Ship To Name",True,1935,255,1,1610,865,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblShipName.defaultvalue("")
+gui.Form2.lblShipName.controlgroup(0)
+gui.Form2.txtShipName.create(textbox,"",True,3255,300,0,1610,1095,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtShipName.defaultvalue("")
+gui.Form2.txtShipName.controlgroup(0)
+gui.Form2.lblShipCity.create(label,"City",True,1935,255,1,5050,865,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblShipCity.defaultvalue("")
+gui.Form2.lblShipCity.controlgroup(0)
+gui.Form2.txtShipCity.create(textbox,"",True,2025,300,0,5050,1095,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtShipCity.defaultvalue("")
+gui.Form2.txtShipCity.controlgroup(0)
+gui.Form2.lblShipState.create(label," State",True,660,255,1,7295,865,True,0,Arial,8,-2147483633,0)
+gui.Form2.lblShipState.defaultvalue("")
+gui.Form2.lblShipState.controlgroup(0)
+gui.Form2.txtShipState.create(textbox,"",True,495,300,0,7295,1095,False,0,Arial,8,-2147483643,1)
+gui.Form2.txtShipState.defaultvalue("")
+gui.Form2.txtShipState.controlgroup(0)
+gui.Form2.gsfgBom.create(gsflexgrid)
+gui.Form2.gsfgBom.FixedRows(0)
+gui.Form2.gsfgBom.FixedCols(0)
+gui.Form2.gsfgBom.visible(True)
+gui.Form2.gsfgBom.size(28005,9075)
+gui.Form2.gsfgBom.zorder(0)
+gui.Form2.gsfgBom.position(200,1635)
+gui.Form2.gsfgBom.enabled(True)
+gui.Form2.cmdExport.create(button)
+gui.Form2.cmdExport.caption("Export")
+gui.Form2.cmdExport.visible(True)
+gui.Form2.cmdExport.size(1050,375)
+gui.Form2.cmdExport.zorder(0)
+gui.Form2.cmdExport.position(200,11100)
+gui.Form2.cmdExport.enabled(True)
+gui.Form2.cmdExport.fontname("Arial")
+gui.Form2.cmdExport.fontsize(8)
+gui.Form2.cmdExport.event(click,cmdexport_click)
+gui.Form2.cmdExport.defaultvalue("")
+gui.Form2.cmdExport.controlgroup(0)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.uOrderLine.Define("sLine",String,Record_No)
+Variable.UDT.uOrderLine.Define("sPart",String,Part)
+Variable.UDT.uOrderLine.Define("sDesc",String,Description)
+Variable.UDT.uOrderLine.Define("iQty",Float,Qty_Ordered)
+Variable.uGlobal.uOrderLine.Declare("uOrderLine")
+Variable.UDT.uBOM.Define("iLine",Long)
+Variable.UDT.uBOM.Define("sPart",String)
+Variable.UDT.uBOM.Define("sDesc",String)
+Variable.UDT.uBOM.Define("iQty",Float)
+Variable.UDT.uBOM.Define("sManufacturer",String)
+Variable.UDT.uBOM.Define("sStorageParam",String)
+Variable.UDT.uBOM.Define("sShortDesc",String)
+Variable.UDT.uBOM.Define("sParent",String)
+Variable.UDT.uBOM.Define("iAltCost",Float)
+Variable.UDT.uBOM.Define("iListPrice",Float)
+Variable.UDT.uBOM.Define("sMSDS",String)
+Variable.UDT.uBOM.Define("iWeight",Float)
+Variable.UDT.uBOM.Define("iCube",Float)
+Variable.UDT.uBOM.Define("sMFR",String)
+Variable.uGlobal.uBOM.Declare("uBOM")
+Variable.Global.iUDTCount.Declare(Long,0)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+F.Intrinsic.Control.CallSub(Buildstyle_form1)
+Gui.Form1..Show
+F.Intrinsic.Control.CallSub(Buildstyle_form2)
+'Gui.Form2..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+program.sub.form1_unload.start
+F.Intrinsic.Control.SetErrorHandler("form1_unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.ODBC.Connection!conx.Close
+
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("form1_unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.form1_unload.end
+
+program.sub.cmdok_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdok_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+'This will launch another screen and lock the previous one.
+V.Local.iCount.Declare(Long)
+V.Local.iRowCount.Declare(Long)
+V.Local.iLoop.Declare(Long)
+V.Local.iCount2.Declare(Long)
+V.Local.iQty.Declare(Float)
+V.Local.sRowVal.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.sFilePath.Declare(String)
+V.Local.sFile.Declare(String)
+V.Local.sPartFile.Declare(String)
+V.Local.sRet.Declare(String)
+
+
+'Get BOM Information for each sales line that is checked
+
+'Lock down the Screen
+Gui.Form1.cmdOK.Enabled(False)
+Gui.Form1.cmdOrder.Enabled(False)
+Gui.Form1.gsfgOESelect.Enabled(False)
+Gui.Form1.txtOrderNo.Enabled(False)
+Gui.Form1.lblWait.Enabled(True)
+Gui.Form1.lblWait.Caption("Please wait the data is being generated!")
+
+V.Local.iRowCount.Set(V.Screen.Form1!gsfgOESelect.Rows)
+F.Intrinsic.Math.Sub(V.Local.iRowCount,1,V.Local.iRowCount)
+
+'Get Exploded BOM Information
+F.Intrinsic.Control.For(V.Local.iCount,1,V.Local.iRowCount,1)
+	'Check to see what rows are checked
+	Gui.Form1.gsfgOESelect.ReadRow(V.Local.iCount,V.Local.sRowVal)
+	F.Intrinsic.String.Split(V.Local.sRowVal,"*!*",V.Local.sRowVal)
+	F.Intrinsic.Control.If(V.Local.sRowVal(0),=,1)
+		'Get Exploded BOM Information
+		'Save File Path for the Text file the Callwrapper will use.
+		F.Intrinsic.String.Concat(V.System.Temp,"\EXPLODEBOM",V.Caller.Terminal,".txt",V.Local.sFilePath)
+
+		F.Intrinsic.String.Concat("Select Parent from BOM_MSTR where Parent = '",V.Local.sRowVal(2).Trim,"'",V.Local.sSql)
+		F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+		F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+			'Save information that needs to be written to the file
+			F.Intrinsic.String.Concat("0",V.Ambient.Tab,V.Local.sRowVal(2),V.Ambient.Tab,V.Local.sFilePath,V.Local.sFile)
+			'Write the information to the file
+			F.Intrinsic.File.String2File(V.Local.sFilePath,V.Local.sFile)
+	'		F.Intrinsic.Debug.CallWrapperDebugEnable
+			'This callwrapper will explode the bom and save all the part information to a text file.  The text file path will be saved to the text file created perviously.
+			F.Global.General.CallWrapperSync(410000,V.Local.sFilePath)
+			'Read the text file saved in sFile so the file the callwrapper created can be located.
+			F.Intrinsic.File.fileToStringArray(v.Local.sFilePath,v.Ambient.Tab,v.Local.sFile)
+			'Get the File name the callwrapper created.
+			F.Intrinsic.File.GetFileNameFromFQN(V.Local.sFile(3),V.Local.sFile.Trim)
+			'Remove all the spaces after the file name. (Note at this time .Trim will not work)
+			F.Intrinsic.String.Split(V.Local.sFile," ",V.Local.sFile)
+			'Save full path with file name
+			F.Intrinsic.String.Concat(V.System.Temp,"\",V.Local.sFile(0).Trim,V.Local.sFilePath.Trim)
+			'Read the file and save
+			F.Intrinsic.File.File2String(V.Local.sFilePath,V.Local.sPartFile)
+			'Split the string by new line
+			F.Intrinsic.String.Split(V.Local.sPartFile,V.Ambient.NewLine,V.Local.sPartFile)
+			'Remove the blank ordinal at the end
+			F.Intrinsic.Math.Sub(V.Local.sPartFile.UBound,1,V.Local.iLoop)
+			'Loop through string array.  Start at line 8 this is were the individual parts start
+			F.Intrinsic.Control.For(V.Local.iCount2,8,V.Local.iLoop,1)
+			'Split each line by |~|
+				F.Intrinsic.String.Split(V.Local.sPartFile(v.Local.iCount2),"|~|",V.Local.sRet)
+				'Calculate Qty from BOM x Sales Order Qty
+				F.Intrinsic.Math.Mult(V.Local.sRowVal(4).Trim,V.Local.sRet(6).Trim,V.Local.iQty)
+				F.Intrinsic.Control.CallSub(Getdata,"Part",V.Local.sRet(2),"Qty",V.Local.sRet(6).Trim,"ShortDesc",V.Local.sRet(3).Trim,"Parent",V.Local.sRet(12).Trim)
+			F.Intrinsic.Control.Next(V.Local.iCount2)
+		F.Intrinsic.Control.Else
+			'Save the Data even though it is not a bom
+			F.Intrinsic.Control.CallSub(Getdata,"Part",V.Local.sRowVal(2),"Qty",V.Local.sRowVal(4).Trim,"ShortDesc",V.Local.sRowVal(3).Trim,"Parent","")
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rst.Close
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iCount)
+
+'Load the udt to the Flexgrid
+Gui.Form2.gsfgBom.LoadFromUDT("V.uGlobal.uBOM","iLine*!*sDesc*!*iQty*!*sManufacturer*!*sStorageParam*!*sShortDesc*!*sParent*!*sPart*!*sMSDS*!*sMFR*!*iWeight*!*iCube*!*iAltCost*!*iListPrice",2)
+Gui.Form2.txtOrder.Text(V.Screen.Form1!txtOrderNo.Text)
+
+F.Intrinsic.String.Concat("Select Order_Ship_ID, Customer, Name_Customer_Ship, City_Ship, State_Ship from v_Order_Ship_To where Order_No = '",V.Screen.Form1!txtOrderNo.Text,"'",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	Gui.Form2.txtShipID.Text(V.ODBC.conx!rst.FieldValTrim!Order_Ship_ID)
+	Gui.Form2.txtCustID.Text(V.ODBC.conx!rst.FieldValTrim!Customer)
+	Gui.Form2.txtShipName.Text(V.ODBC.conx!rst.FieldValTrim!Name_Customer_Ship)
+	Gui.Form2.txtShipCity.Text(V.ODBC.conx!rst.FieldValTrim!City_Ship)
+	Gui.Form2.txtShipState.Text(V.ODBC.conx!rst.FieldValTrim!State_Ship)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+
+F.Intrinsic.String.Concat("Select Name_Customer from v_Customer_Master where Customer = '",V.Screen.Form2!txtCustID.Text,"'",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	Gui.Form2.txtCustName.Text(V.ODBC.conx!rst.FieldValTrim!Name_Customer)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+
+Gui.Form1..Visible(False)
+Gui.Form2..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdok_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdok_click.end
+
+program.sub.cmdorder_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdorder_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.sTitles.Declare(String)
+V.Local.sRet.Declare(String)
+V.Local.iWidths.Declare(Long)
+
+
+F.Intrinsic.String.Split("Order #*!*Customer ID*!*Customer Name*!*Address*!*City*!*Zip","*!*",V.Local.sTitles)
+F.Intrinsic.String.Split("1000*!*1000*!*3000*!*5000*!*1000*!*1000","*!*",V.Local.iWidths)
+V.Local.sSql.Set("select a.ORDER_NO,a.CUSTOMER, b.NAME_CUSTOMER, b.Address1, b.City, b.Zip from v_ORDER_HEADER a join v_CUSTOMER_MASTER b on a.CUSTOMER = b.CUSTOMER Order by Order_No")
+F.Intrinsic.UI.Browser("Select Order Number","conx",V.Local.sSql,V.Local.sTitles,V.Local.iWidths,V.Local.sRet)
+
+F.Intrinsic.Control.If(V.Local.sRet,!=,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	'Need to load the grid with the order lines for that order
+	F.Intrinsic.Control.CallSub(Loadgrid,"Order",V.Local.sRet(0))
+F.Intrinsic.Control.Else
+	F.Intrinsic.UI.Msgbox("No order was selected!","Error")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdorder_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdorder_click.end
+
+Program.Sub.BuildStyle_Form1.Start
+F.Intrinsic.Control.SetErrorHandler("BuildStyle_Form1_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+Gui.Form1.gsfgOESelect.Cols(5)
+Gui.Form1.gsfgOESelect.Rows(2)
+Gui.Form1.gsfgOESelect.FixedRows(1)
+
+Gui.Form1.gsfgOESelect.SetColumnPercentages(".10:.10:.30:.40:.10")
+
+'Column 0
+'Style 1
+Gui.Form1.gsfgOESelect.BuildStyle(1,0,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(1,0,"Format","Alignment",4)
+'Style 2
+Gui.Form1.gsfgOESelect.BuildStyle(2,0,"Format","Alignment",4)
+Gui.Form1.gsfgOESelect.BuildStyle(2,0,"Type","Checkbox",True)
+
+'Column 1
+'Style 1
+Gui.Form1.gsfgOESelect.BuildStyle(1,1,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(1,1,"Format","Alignment",4)
+'Style 2
+Gui.Form1.gsfgOESelect.BuildStyle(2,1,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(2,1,"Format","Alignment",2)
+
+'Column 2
+'Style 1
+Gui.Form1.gsfgOESelect.BuildStyle(1,2,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(1,2,"Format","Alignment",4)
+'Style 2
+Gui.Form1.gsfgOESelect.BuildStyle(2,2,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(2,2,"Format","Alignment",2)
+
+'Column 3
+'Style 1
+Gui.Form1.gsfgOESelect.BuildStyle(1,3,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(1,3,"Format","Alignment",4)
+'Style 2
+Gui.Form1.gsfgOESelect.BuildStyle(2,3,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(2,3,"Format","Alignment",2)
+
+'Column 4
+'Style 1
+Gui.Form1.gsfgOESelect.BuildStyle(1,4,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(1,4,"Format","Alignment",4)
+'Style 2
+Gui.Form1.gsfgOESelect.BuildStyle(2,4,"Type","Locked",True)
+Gui.Form1.gsfgOESelect.BuildStyle(2,4,"Format","Alignment",6)
+
+
+Gui.Form1.gsfgOESelect.TextMatrix(0,0,"Select")
+Gui.Form1.gsfgOESelect.TextMatrix(1,0,"Line No.")
+Gui.Form1.gsfgOESelect.TextMatrix(2,0,"Part Number.")
+Gui.Form1.gsfgOESelect.TextMatrix(3,0,"Description")
+Gui.Form1.gsfgOESelect.TextMatrix(4,0,"Quantity")
+
+Gui.Form1.gsfgOESelect.ApplyStyle(0,1)
+Gui.Form1.gsfgOESelect.ApplyStyle(1,2)
+
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("BuildStyle_Form1_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.BuildStyle_Form1.End
+
+Program.Sub.LoadGrid.Start
+F.Intrinsic.Control.SetErrorHandler("LoadGrid_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.iCount.Declare(Long)
+V.Local.iRowCount.Declare(Long)
+
+Gui.Form1.txtOrderNo.Text(V.Args.Order.Trim)
+
+F.Intrinsic.String.Concat("Select Record_No, Part, Description, Qty_Ordered from V_Order_Lines where Order_No = '",V.Args.Order,"' Order by Record_No",V.Local.sSql)
+
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	'Load the UDT
+	F.Intrinsic.Variable.LoadUDTFromRecordset("conx","rst","v.uGlobal.uOrderLine",False)
+	Gui.Form1.gsfgOESelect.Visible(False)
+	Gui.Form1.gsfgOESelect.LoadFromUDT("v.uglobal.uOrderLine","sLine::1*!*sPart::2*!*sDesc::3*!*iQty::4",2)
+	V.Local.iRowCount.Set(V.Screen.Form1!gsfgOESelect.Rows)
+	F.Intrinsic.Math.Sub(V.Local.iRowCount,1,V.Local.iRowCount)
+	F.Intrinsic.Control.For(V.Local.iCount,1,V.Local.iRowCount,1)
+		Gui.Form1.gsfgOESelect.TextMatrix(0,V.Local.iCount,1)
+	F.Intrinsic.Control.Next(V.Local.iCount)
+	Gui.Form1.gsfgOESelect.Visible(True)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+Gui.Form1.cmdOK.SetFocus
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("LoadGrid_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.LoadGrid.End
+
+program.sub.txtorderno_keypressenter.start
+F.Intrinsic.Control.SetErrorHandler("txtorderno_keypressenter_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sOrder.Declare(String)
+
+F.Intrinsic.Control.If(V.Screen.Form1!txtOrderNo.Text,!=,"")
+	V.Local.sOrder.Set(V.Screen.Form1!txtOrderNo.Text)
+	F.Intrinsic.String.LPad(V.Local.sOrder.Trim,"0",7,V.Local.sOrder)
+	F.Intrinsic.Control.CallSub(Loadgrid,"Order",V.Local.sOrder)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtorderno_keypressenter_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.txtorderno_keypressenter.end
+
+program.sub.form2_unload.start
+F.Intrinsic.Control.SetErrorHandler("form2_unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.Control.CallSub(Form1_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("form2_unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.form2_unload.end
+
+program.sub.cmdexport_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdexport_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bRet.Declare(Boolean)
+V.Local.sType.Declare(String)
+
+'Check to see if excel is loaded
+F.Automation.MSExcel.CheckPresence(V.Local.bRet)
+F.Intrinsic.Control.If(V.Local.bRet,=,True)
+	'Has Excel
+	V.Local.sType.Set("Excel")
+	'Call excel export
+	F.Intrinsic.Control.CallSub(Dirdata,"Type",V.Local.sType)
+F.Intrinsic.Control.Else
+	F.Automation.OOGeneral.CheckPresence(V.Local.bRet)
+	F.Intrinsic.Control.If(V.Local.bRet,=,True)
+		'Has Open Office
+		V.Local.sType.Set("OOCalc")
+		'Call Open Office export
+		F.Intrinsic.Control.CallSub(Dirdata,"Type",V.Local.sType)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.UI.Msgbox("Excel or Open Office is required for export!","Error")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdexport_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdexport_click.end
+
+Program.Sub.BuildStyle_Form2.Start
+F.Intrinsic.Control.SetErrorHandler("BuildStyle_Form2_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+Gui.Form2.gsfgBom.Cols(14)
+Gui.Form2.gsfgBom.Rows(2)
+Gui.Form2.gsfgBom.FixedRows(1)
+
+Gui.Form2.gsfgBom.SetColumnPercentages(".02:.16:.03:.10:.14:.14:.07:.11:.03:.08:.03:.03:.03:.03 ")
+
+'Column 0
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,0,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,0,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,0,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,0,"Format","Alignment",6)
+
+'Column 1
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,1,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,1,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,1,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,1,"Format","Alignment",2)
+
+'Column 2
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,2,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,2,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,2,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,2,"Format","Alignment",6)
+
+'Column 3
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,3,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,3,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,3,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,3,"Format","Alignment",2)
+
+'Column 4
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,4,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,4,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,4,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,4,"Format","Alignment",2)
+
+'Column 5
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,5,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,5,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,5,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,5,"Format","Alignment",2)
+
+'Column 6
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,6,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,6,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,6,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,6,"Format","Alignment",2)
+
+'Column 7
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,7,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,7,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,7,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,7,"Format","Alignment",2)
+
+'Column 8
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,8,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,8,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,8,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,8,"Format","Alignment",6)
+
+'Column 9
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,9,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,9,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,9,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,9,"Format","Alignment",2)
+
+'Column 10
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,10,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,10,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,10,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,10,"Format","Alignment",6)
+
+'Column 11
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,11,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,11,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,11,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,11,"Format","Alignment",6)
+
+'Column 12
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,12,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,12,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,12,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,12,"Format","Alignment",6)
+
+'Column 13
+'Style 1
+Gui.Form2.gsfgBom.BuildStyle(1,13,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(1,13,"Format","Alignment",4)
+'Style 2
+Gui.Form2.gsfgBom.BuildStyle(2,13,"Type","Locked",True)
+Gui.Form2.gsfgBom.BuildStyle(2,13,"Format","Alignment",6)
+
+Gui.Form2.gsfgBom.TextMatrix(0,0,"Line")
+Gui.Form2.gsfgBom.TextMatrix(1,0,"Description")
+Gui.Form2.gsfgBom.TextMatrix(2,0,"Qty")
+Gui.Form2.gsfgBom.TextMatrix(3,0,"Manufacturer")
+Gui.Form2.gsfgBom.TextMatrix(4,0,"Storage Parameters")
+Gui.Form2.gsfgBom.TextMatrix(5,0,"Short Desc")
+Gui.Form2.gsfgBom.TextMatrix(6,0,"Parent")
+Gui.Form2.gsfgBom.TextMatrix(7,0,"Part")
+Gui.Form2.gsfgBom.TextMatrix(8,0,"MSDS")
+Gui.Form2.gsfgBom.TextMatrix(9,0,"MFR #")
+Gui.Form2.gsfgBom.TextMatrix(10,0,"Weight")
+Gui.Form2.gsfgBom.TextMatrix(11,0,"Cube")
+Gui.Form2.gsfgBom.TextMatrix(12,0,"Alt Cost")
+Gui.Form2.gsfgBom.TextMatrix(13,0,"List Price")
+
+Gui.Form2.gsfgBom.ApplyStyle(0,1)
+Gui.Form2.gsfgBom.ApplyStyle(1,2)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("BuildStyle_Form2_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.BuildStyle_Form2.End
+
+program.sub.txtorderno_lostfocus.start
+F.Intrinsic.Control.SetErrorHandler("txtorderno_lostfocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.sOrder.Declare(String)
+
+F.Intrinsic.Control.If(V.Screen.Form1!txtOrderNo.Text,!=,"")
+	V.Local.sOrder.Set(V.Screen.Form1!txtOrderNo.Text)
+	F.Intrinsic.String.LPad(V.Local.sOrder.Trim,"0",7,V.Local.sOrder)
+	F.Intrinsic.Control.CallSub(Loadgrid,"Order",V.Local.sOrder)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtorderno_lostfocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.txtorderno_lostfocus.end
+
+Program.Sub.Excel.Start
+F.Intrinsic.Control.SetErrorHandler("Excel_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Excel Export
+F.Automation.MSExcel.WriteSpreadSheet(V.Args.FilePath,V.Args.FileTemp,V.Args.Bom)
+F.Intrinsic.UI.Msgbox("Export Complete!","Export")
+F.Intrinsic.Control.CallSub(Form1_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Excel_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Excel.End
+
+Program.Sub.DirData.Start
+F.Intrinsic.Control.SetErrorHandler("DirData_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+V.Local.bRet.Declare(Boolean)
+V.Local.sFilePath.Declare(String)
+V.Local.sFileTemp.Declare(String)
+V.Local.sTitle.Declare(String)
+V.Local.sDate.Declare(String)
+V.Local.sBom.Declare(String)
+V.Local.sOrder.Declare(String)
+
+V.Local.sDate.Set(V.Ambient.Date)
+F.Intrinsic.String.Replace(V.Local.sDate,"/","_",V.Local.sDate)
+
+V.Local.sOrder.Set(V.Screen.Form1!txtOrderNo.Text)
+
+'This is where the excel file will be created
+F.Intrinsic.String.Concat(V.Caller.GlobalDir,"\BOM Explosion",V.Local.sFilePath)
+F.Intrinsic.String.Concat(V.Caller.GlobalDir,"\BOM Explosion\OE_4002_BOM_Template.xlsx",V.Local.sFileTemp)
+F.Intrinsic.File.DirExists(V.Local.sFilePath,V.Local.bRet)
+'Check to see if the directory exists
+F.Intrinsic.Control.If(V.Local.bRet,=,False)
+	'Create it if it doesn't
+	F.Intrinsic.File.CreateDir(V.Local.sFilePath)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Concat(V.Local.sFilePath,"\",V.Local.sOrder.Trim,"_OE_BOM",V.Local.sDate,".xlsx",V.Local.sFilePath)
+V.Local.sTitle.set("Line*!*Part*!*Description*!*Qty*!*Manufacturer*!*Storage Parameters*!*Short Desc*!*Parent*!*Alt Cost*!*List Price*!*MSDS*!*Weight*!*Cube*!*MFR #$!$")
+
+F.Intrinsic.Variable.UDTToString(v.uGlobal.uBOM,"iLine*!*sPart*!*sDesc*!*iQty*!*sManufacturer*!*sStorageParam*!*sShortDesc*!*sParent*!*iAltCost*!*iListPrice*!*sMSDS*!*iWeight*!*iCube*!*sMFR","$!$","*!*",v.Local.sBom)
+
+F.Intrinsic.String.Concat(V.Local.sTitle,V.Local.sBom,V.Local.sBom)
+F.Intrinsic.Control.If(V.Args.Type,=,"Excel")
+	F.Intrinsic.Control.CallSub(Excel,"FileTemp",V.Local.sFileTemp,"FilePath",V.Local.sFilePath,"BOM",V.Local.sBOM)
+F.Intrinsic.Control.ElseIf(V.Args.Type,=,"OOCalc")
+	F.Intrinsic.Control.CallSub(Oocalc,"FileTemp",V.Local.sFileTemp,"FilePath",V.Local.sFilePath,"BOM",V.Local.sBOM)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("DirData_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.DirData.End
+
+Program.Sub.OOCalc.Start
+F.Intrinsic.Control.SetErrorHandler("OOCalc_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+F.Intrinsic.String.Replace(V.Args.FileTemp,"xlsx","ods",V.Args.FileTemp)
+
+F.Automation.OOCalc.WriteSpreadsheet(V.Args.FilePath,V.Args.FileTemp,V.Args.Bom)
+F.Intrinsic.UI.Msgbox("Export Complete!","Export")
+F.Intrinsic.Control.CallSub(Form1_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("OOCalc_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.OOCalc.End
+
+Program.Sub.GetData.Start
+F.Intrinsic.Control.SetErrorHandler("GetData_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSql.Declare(String)
+V.Local.sExtra.Declare(String)
+V.Local.sText.Declare(String)
+
+V.Local.sText.Redim(0,4)
+
+V.uGlobal.uBOM.RedimPreserve(0,V.Global.iUDTCount)
+'Gather and save the Data requried for the Grid to a UDT
+V.uGlobal.uBOM(v.Global.iUDTCount)!sPart.Set(V.Args.Part.Trim)
+V.uGlobal.uBOM(v.Global.iUDTCount)!iQty.Set(V.Args.Qty)
+V.uGlobal.uBOM(v.Global.iUDTCount)!sShortDesc.Set(V.Args.ShortDesc)
+V.uGlobal.uBOM(v.Global.iUDTCount)!sParent.Set(V.Args.Parent)
+
+F.Intrinsic.String.Concat("Select * from Extra_Text where Part = '",V.Args.Part.Trim,"' Order by Text_Sequence",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+
+
+
+	V.Local.sExtra.Set("")
+	F.Intrinsic.Control.DoUntil(V.ODBC.conx!rst.EOF,=,True)
+		V.Local.sText.Redim(0,4)
+		V.Local.sText(0).Set(V.ODBC.conx!rst.FieldValTrim!Text_Line1)
+		V.Local.sText(1).Set(V.ODBC.conx!rst.FieldValTrim!Text_Line2)
+		V.Local.sText(2).Set(V.ODBC.conx!rst.FieldValTrim!Text_Line3)
+		V.Local.sText(3).Set(V.ODBC.conx!rst.FieldValTrim!Text_Line4)
+		V.Local.sText(4).Set(V.ODBC.conx!rst.FieldValTrim!Text_Line5)
+		F.Intrinsic.String.Build("{0} {1} {2} {3} {4} {5} ",V.Local.sExtra,V.Local.sText(0),V.Local.sText(1),V.Local.sText(2),V.Local.sText(3),V.Local.sText(4),V.Local.sExtra)
+
+'		F.Intrinsic.String.Concat(V.ODBC.conx!rst.FieldVal!Text_Line1,V.ODBC.conx!rst.FieldVal!Text_Line2,V.ODBC.conx!rst.FieldVal!Text_Line3,V.ODBC.conx!rst.FieldVal!Text_Line4,V.ODBC.conx!rst.FieldVal!Text_Line5,V.Local.sExtra)
+		F.ODBC.conx!rst.MoveNext
+	F.Intrinsic.Control.Loop
+	V.uGlobal.uBOM(v.Global.iUDTCount)!sDesc.Set(V.Local.sExtra)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+
+F.Intrinsic.String.Concat("Select MFG_Name, MFG_Part from Inv_Cross_Ref where Part = '",V.Args.Part.Trim,"' and Customer = ''",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,True)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!sManufacturer.Set("VeriCor")
+F.Intrinsic.Control.ElseIf(V.ODBC.conx!rst.FieldValTrim!MFG_Name,!=,"")
+	V.uGlobal.uBOM(v.Global.iUDTCount)!sManufacturer.Set(V.ODBC.conx!rst.FieldValTrim!MFG_Name)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!sMFR.Set(V.ODBC.conx!rst.FieldValTrim!MFG_Part)
+F.Intrinsic.Control.Else
+	V.uGlobal.uBOM(v.Global.iUDTCount)!sManufacturer.Set("VeriCor")
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+
+F.Intrinsic.String.Concat("Select Description_2, LBS, Length from Inventory_MST2 where Part = '",V.Args.Part.Trim,"'",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!sStorageParam.Set(V.ODBC.conx!rst.FieldValTrim!Description_2)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!iWeight.Set(V.ODBC.conx!rst.FieldValTrim!LBS)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!iCube.Set(V.ODBC.conx!rst.FieldValTrim!Length)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+
+F.Intrinsic.String.Concat("Select Amt_Alt_Cost, Amt_Price from Inventory_MSTR where Part = '",V.Args.Part.Trim,"'",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!iAltCost.Set(V.ODBC.conx!rst.FieldValTrim!Amt_Alt_Cost)
+	V.uGlobal.uBOM(v.Global.iUDTCount)!iListPrice.Set(V.ODBC.conx!rst.FieldValTrim!Amt_Price)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+
+F.Intrinsic.String.Concat("Select HM_Flag from Inventory_MST3 where part = '",V.Args.Part.Trim,"'",V.Local.sSql)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSql)
+F.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	F.intrinsic.Control.If(V.ODBC.conx!rst.FieldValTrim!HM_Flag,=,"Y")
+		V.uGlobal.uBOM(V.Global.iUDTCount)!sMSDS.Set("Y")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rst.Close
+'Set the Line count in the udt
+V.uGlobal.uBOM(v.Global.iUDTCount)!iLine.Set(v.Global.iUDTCount.++)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GetData_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4002_OE_BOM.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Form1_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.GetData.End
+
+
